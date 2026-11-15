@@ -1,0 +1,550 @@
+[
+  {
+    "id": "demo-0",
+    "label": "Histórico UCI — 22/04/2010 05:00",
+    "envelope": {
+      "schema_version": "1.0",
+      "dataset_id": "uci235-hourly",
+      "time_basis": "dataset_local_naive",
+      "as_of": "2010-04-22T05:00:00",
+      "history": [
+        {
+          "interval_start": "2010-04-21T04:00:00",
+          "interval_end": "2010-04-21T05:00:00",
+          "energy_kwh": 0.417333
+        },
+        {
+          "interval_start": "2010-04-21T05:00:00",
+          "interval_end": "2010-04-21T06:00:00",
+          "energy_kwh": 0.420067
+        },
+        {
+          "interval_start": "2010-04-21T06:00:00",
+          "interval_end": "2010-04-21T07:00:00",
+          "energy_kwh": 0.472767
+        },
+        {
+          "interval_start": "2010-04-21T07:00:00",
+          "interval_end": "2010-04-21T08:00:00",
+          "energy_kwh": 1.123333
+        },
+        {
+          "interval_start": "2010-04-21T08:00:00",
+          "interval_end": "2010-04-21T09:00:00",
+          "energy_kwh": 1.497733
+        },
+        {
+          "interval_start": "2010-04-21T09:00:00",
+          "interval_end": "2010-04-21T10:00:00",
+          "energy_kwh": 1.251433
+        },
+        {
+          "interval_start": "2010-04-21T10:00:00",
+          "interval_end": "2010-04-21T11:00:00",
+          "energy_kwh": 1.787033
+        },
+        {
+          "interval_start": "2010-04-21T11:00:00",
+          "interval_end": "2010-04-21T12:00:00",
+          "energy_kwh": 1.7057
+        },
+        {
+          "interval_start": "2010-04-21T12:00:00",
+          "interval_end": "2010-04-21T13:00:00",
+          "energy_kwh": 1.461633
+        },
+        {
+          "interval_start": "2010-04-21T13:00:00",
+          "interval_end": "2010-04-21T14:00:00",
+          "energy_kwh": 1.452067
+        },
+        {
+          "interval_start": "2010-04-21T14:00:00",
+          "interval_end": "2010-04-21T15:00:00",
+          "energy_kwh": 1.5218
+        },
+        {
+          "interval_start": "2010-04-21T15:00:00",
+          "interval_end": "2010-04-21T16:00:00",
+          "energy_kwh": 0.9395
+        },
+        {
+          "interval_start": "2010-04-21T16:00:00",
+          "interval_end": "2010-04-21T17:00:00",
+          "energy_kwh": 0.457833
+        },
+        {
+          "interval_start": "2010-04-21T17:00:00",
+          "interval_end": "2010-04-21T18:00:00",
+          "energy_kwh": 1.276733
+        },
+        {
+          "interval_start": "2010-04-21T18:00:00",
+          "interval_end": "2010-04-21T19:00:00",
+          "energy_kwh": 1.314567
+        },
+        {
+          "interval_start": "2010-04-21T19:00:00",
+          "interval_end": "2010-04-21T20:00:00",
+          "energy_kwh": 0.589333
+        },
+        {
+          "interval_start": "2010-04-21T20:00:00",
+          "interval_end": "2010-04-21T21:00:00",
+          "energy_kwh": 1.2491
+        },
+        {
+          "interval_start": "2010-04-21T21:00:00",
+          "interval_end": "2010-04-21T22:00:00",
+          "energy_kwh": 1.681467
+        },
+        {
+          "interval_start": "2010-04-21T22:00:00",
+          "interval_end": "2010-04-21T23:00:00",
+          "energy_kwh": 1.515333
+        },
+        {
+          "interval_start": "2010-04-21T23:00:00",
+          "interval_end": "2010-04-22T00:00:00",
+          "energy_kwh": 1.8233
+        },
+        {
+          "interval_start": "2010-04-22T00:00:00",
+          "interval_end": "2010-04-22T01:00:00",
+          "energy_kwh": 0.6506
+        },
+        {
+          "interval_start": "2010-04-22T01:00:00",
+          "interval_end": "2010-04-22T02:00:00",
+          "energy_kwh": 0.3698
+        },
+        {
+          "interval_start": "2010-04-22T02:00:00",
+          "interval_end": "2010-04-22T03:00:00",
+          "energy_kwh": 0.4421
+        },
+        {
+          "interval_start": "2010-04-22T03:00:00",
+          "interval_end": "2010-04-22T04:00:00",
+          "energy_kwh": 0.416967
+        },
+        {
+          "interval_start": "2010-04-22T04:00:00",
+          "interval_end": "2010-04-22T05:00:00",
+          "energy_kwh": 0.928433
+        }
+      ]
+    }
+  },
+  {
+    "id": "demo-24",
+    "label": "Histórico UCI — 23/04/2010 05:00",
+    "envelope": {
+      "schema_version": "1.0",
+      "dataset_id": "uci235-hourly",
+      "time_basis": "dataset_local_naive",
+      "as_of": "2010-04-23T05:00:00",
+      "history": [
+        {
+          "interval_start": "2010-04-22T04:00:00",
+          "interval_end": "2010-04-22T05:00:00",
+          "energy_kwh": 0.928433
+        },
+        {
+          "interval_start": "2010-04-22T05:00:00",
+          "interval_end": "2010-04-22T06:00:00",
+          "energy_kwh": 0.411667
+        },
+        {
+          "interval_start": "2010-04-22T06:00:00",
+          "interval_end": "2010-04-22T07:00:00",
+          "energy_kwh": 0.3484
+        },
+        {
+          "interval_start": "2010-04-22T07:00:00",
+          "interval_end": "2010-04-22T08:00:00",
+          "energy_kwh": 0.4622
+        },
+        {
+          "interval_start": "2010-04-22T08:00:00",
+          "interval_end": "2010-04-22T09:00:00",
+          "energy_kwh": 0.883067
+        },
+        {
+          "interval_start": "2010-04-22T09:00:00",
+          "interval_end": "2010-04-22T10:00:00",
+          "energy_kwh": 1.710967
+        },
+        {
+          "interval_start": "2010-04-22T10:00:00",
+          "interval_end": "2010-04-22T11:00:00",
+          "energy_kwh": 1.8938
+        },
+        {
+          "interval_start": "2010-04-22T11:00:00",
+          "interval_end": "2010-04-22T12:00:00",
+          "energy_kwh": 2.047933
+        },
+        {
+          "interval_start": "2010-04-22T12:00:00",
+          "interval_end": "2010-04-22T13:00:00",
+          "energy_kwh": 2.2073
+        },
+        {
+          "interval_start": "2010-04-22T13:00:00",
+          "interval_end": "2010-04-22T14:00:00",
+          "energy_kwh": 1.9411
+        },
+        {
+          "interval_start": "2010-04-22T14:00:00",
+          "interval_end": "2010-04-22T15:00:00",
+          "energy_kwh": 1.578233
+        },
+        {
+          "interval_start": "2010-04-22T15:00:00",
+          "interval_end": "2010-04-22T16:00:00",
+          "energy_kwh": 1.415133
+        },
+        {
+          "interval_start": "2010-04-22T16:00:00",
+          "interval_end": "2010-04-22T17:00:00",
+          "energy_kwh": 1.465
+        },
+        {
+          "interval_start": "2010-04-22T17:00:00",
+          "interval_end": "2010-04-22T18:00:00",
+          "energy_kwh": 1.030033
+        },
+        {
+          "interval_start": "2010-04-22T18:00:00",
+          "interval_end": "2010-04-22T19:00:00",
+          "energy_kwh": 0.488533
+        },
+        {
+          "interval_start": "2010-04-22T19:00:00",
+          "interval_end": "2010-04-22T20:00:00",
+          "energy_kwh": 0.5151
+        },
+        {
+          "interval_start": "2010-04-22T20:00:00",
+          "interval_end": "2010-04-22T21:00:00",
+          "energy_kwh": 0.874633
+        },
+        {
+          "interval_start": "2010-04-22T21:00:00",
+          "interval_end": "2010-04-22T22:00:00",
+          "energy_kwh": 1.4799
+        },
+        {
+          "interval_start": "2010-04-22T22:00:00",
+          "interval_end": "2010-04-22T23:00:00",
+          "energy_kwh": 0.369033
+        },
+        {
+          "interval_start": "2010-04-22T23:00:00",
+          "interval_end": "2010-04-23T00:00:00",
+          "energy_kwh": 0.418467
+        },
+        {
+          "interval_start": "2010-04-23T00:00:00",
+          "interval_end": "2010-04-23T01:00:00",
+          "energy_kwh": 0.3996
+        },
+        {
+          "interval_start": "2010-04-23T01:00:00",
+          "interval_end": "2010-04-23T02:00:00",
+          "energy_kwh": 0.309233
+        },
+        {
+          "interval_start": "2010-04-23T02:00:00",
+          "interval_end": "2010-04-23T03:00:00",
+          "energy_kwh": 0.3478
+        },
+        {
+          "interval_start": "2010-04-23T03:00:00",
+          "interval_end": "2010-04-23T04:00:00",
+          "energy_kwh": 0.345167
+        },
+        {
+          "interval_start": "2010-04-23T04:00:00",
+          "interval_end": "2010-04-23T05:00:00",
+          "energy_kwh": 0.369
+        }
+      ]
+    }
+  },
+  {
+    "id": "demo-48",
+    "label": "Histórico UCI — 24/04/2010 05:00",
+    "envelope": {
+      "schema_version": "1.0",
+      "dataset_id": "uci235-hourly",
+      "time_basis": "dataset_local_naive",
+      "as_of": "2010-04-24T05:00:00",
+      "history": [
+        {
+          "interval_start": "2010-04-23T04:00:00",
+          "interval_end": "2010-04-23T05:00:00",
+          "energy_kwh": 0.369
+        },
+        {
+          "interval_start": "2010-04-23T05:00:00",
+          "interval_end": "2010-04-23T06:00:00",
+          "energy_kwh": 0.3976
+        },
+        {
+          "interval_start": "2010-04-23T06:00:00",
+          "interval_end": "2010-04-23T07:00:00",
+          "energy_kwh": 1.367333
+        },
+        {
+          "interval_start": "2010-04-23T07:00:00",
+          "interval_end": "2010-04-23T08:00:00",
+          "energy_kwh": 0.875733
+        },
+        {
+          "interval_start": "2010-04-23T08:00:00",
+          "interval_end": "2010-04-23T09:00:00",
+          "energy_kwh": 1.722433
+        },
+        {
+          "interval_start": "2010-04-23T09:00:00",
+          "interval_end": "2010-04-23T10:00:00",
+          "energy_kwh": 1.531167
+        },
+        {
+          "interval_start": "2010-04-23T10:00:00",
+          "interval_end": "2010-04-23T11:00:00",
+          "energy_kwh": 1.5628
+        },
+        {
+          "interval_start": "2010-04-23T11:00:00",
+          "interval_end": "2010-04-23T12:00:00",
+          "energy_kwh": 1.434333
+        },
+        {
+          "interval_start": "2010-04-23T12:00:00",
+          "interval_end": "2010-04-23T13:00:00",
+          "energy_kwh": 1.443167
+        },
+        {
+          "interval_start": "2010-04-23T13:00:00",
+          "interval_end": "2010-04-23T14:00:00",
+          "energy_kwh": 1.4595
+        },
+        {
+          "interval_start": "2010-04-23T14:00:00",
+          "interval_end": "2010-04-23T15:00:00",
+          "energy_kwh": 1.559867
+        },
+        {
+          "interval_start": "2010-04-23T15:00:00",
+          "interval_end": "2010-04-23T16:00:00",
+          "energy_kwh": 0.748333
+        },
+        {
+          "interval_start": "2010-04-23T16:00:00",
+          "interval_end": "2010-04-23T17:00:00",
+          "energy_kwh": 0.4193
+        },
+        {
+          "interval_start": "2010-04-23T17:00:00",
+          "interval_end": "2010-04-23T18:00:00",
+          "energy_kwh": 0.406433
+        },
+        {
+          "interval_start": "2010-04-23T18:00:00",
+          "interval_end": "2010-04-23T19:00:00",
+          "energy_kwh": 0.351167
+        },
+        {
+          "interval_start": "2010-04-23T19:00:00",
+          "interval_end": "2010-04-23T20:00:00",
+          "energy_kwh": 0.8642
+        },
+        {
+          "interval_start": "2010-04-23T20:00:00",
+          "interval_end": "2010-04-23T21:00:00",
+          "energy_kwh": 0.6341
+        },
+        {
+          "interval_start": "2010-04-23T21:00:00",
+          "interval_end": "2010-04-23T22:00:00",
+          "energy_kwh": 0.4116
+        },
+        {
+          "interval_start": "2010-04-23T22:00:00",
+          "interval_end": "2010-04-23T23:00:00",
+          "energy_kwh": 0.363933
+        },
+        {
+          "interval_start": "2010-04-23T23:00:00",
+          "interval_end": "2010-04-24T00:00:00",
+          "energy_kwh": 0.3518
+        },
+        {
+          "interval_start": "2010-04-24T00:00:00",
+          "interval_end": "2010-04-24T01:00:00",
+          "energy_kwh": 0.302533
+        },
+        {
+          "interval_start": "2010-04-24T01:00:00",
+          "interval_end": "2010-04-24T02:00:00",
+          "energy_kwh": 0.392633
+        },
+        {
+          "interval_start": "2010-04-24T02:00:00",
+          "interval_end": "2010-04-24T03:00:00",
+          "energy_kwh": 0.434567
+        },
+        {
+          "interval_start": "2010-04-24T03:00:00",
+          "interval_end": "2010-04-24T04:00:00",
+          "energy_kwh": 0.3771
+        },
+        {
+          "interval_start": "2010-04-24T04:00:00",
+          "interval_end": "2010-04-24T05:00:00",
+          "energy_kwh": 0.3519
+        }
+      ]
+    }
+  },
+  {
+    "id": "demo-72",
+    "label": "Histórico UCI — 25/04/2010 05:00",
+    "envelope": {
+      "schema_version": "1.0",
+      "dataset_id": "uci235-hourly",
+      "time_basis": "dataset_local_naive",
+      "as_of": "2010-04-25T05:00:00",
+      "history": [
+        {
+          "interval_start": "2010-04-24T04:00:00",
+          "interval_end": "2010-04-24T05:00:00",
+          "energy_kwh": 0.3519
+        },
+        {
+          "interval_start": "2010-04-24T05:00:00",
+          "interval_end": "2010-04-24T06:00:00",
+          "energy_kwh": 1.091033
+        },
+        {
+          "interval_start": "2010-04-24T06:00:00",
+          "interval_end": "2010-04-24T07:00:00",
+          "energy_kwh": 0.379467
+        },
+        {
+          "interval_start": "2010-04-24T07:00:00",
+          "interval_end": "2010-04-24T08:00:00",
+          "energy_kwh": 0.412967
+        },
+        {
+          "interval_start": "2010-04-24T08:00:00",
+          "interval_end": "2010-04-24T09:00:00",
+          "energy_kwh": 0.344767
+        },
+        {
+          "interval_start": "2010-04-24T09:00:00",
+          "interval_end": "2010-04-24T10:00:00",
+          "energy_kwh": 0.354333
+        },
+        {
+          "interval_start": "2010-04-24T10:00:00",
+          "interval_end": "2010-04-24T11:00:00",
+          "energy_kwh": 0.3441
+        },
+        {
+          "interval_start": "2010-04-24T11:00:00",
+          "interval_end": "2010-04-24T12:00:00",
+          "energy_kwh": 0.354767
+        },
+        {
+          "interval_start": "2010-04-24T12:00:00",
+          "interval_end": "2010-04-24T13:00:00",
+          "energy_kwh": 0.529633
+        },
+        {
+          "interval_start": "2010-04-24T13:00:00",
+          "interval_end": "2010-04-24T14:00:00",
+          "energy_kwh": 0.6028
+        },
+        {
+          "interval_start": "2010-04-24T14:00:00",
+          "interval_end": "2010-04-24T15:00:00",
+          "energy_kwh": 0.543
+        },
+        {
+          "interval_start": "2010-04-24T15:00:00",
+          "interval_end": "2010-04-24T16:00:00",
+          "energy_kwh": 1.242133
+        },
+        {
+          "interval_start": "2010-04-24T16:00:00",
+          "interval_end": "2010-04-24T17:00:00",
+          "energy_kwh": 0.6988
+        },
+        {
+          "interval_start": "2010-04-24T17:00:00",
+          "interval_end": "2010-04-24T18:00:00",
+          "energy_kwh": 1.680833
+        },
+        {
+          "interval_start": "2010-04-24T18:00:00",
+          "interval_end": "2010-04-24T19:00:00",
+          "energy_kwh": 2.4453
+        },
+        {
+          "interval_start": "2010-04-24T19:00:00",
+          "interval_end": "2010-04-24T20:00:00",
+          "energy_kwh": 2.478067
+        },
+        {
+          "interval_start": "2010-04-24T20:00:00",
+          "interval_end": "2010-04-24T21:00:00",
+          "energy_kwh": 2.0275
+        },
+        {
+          "interval_start": "2010-04-24T21:00:00",
+          "interval_end": "2010-04-24T22:00:00",
+          "energy_kwh": 3.143333
+        },
+        {
+          "interval_start": "2010-04-24T22:00:00",
+          "interval_end": "2010-04-24T23:00:00",
+          "energy_kwh": 3.0312
+        },
+        {
+          "interval_start": "2010-04-24T23:00:00",
+          "interval_end": "2010-04-25T00:00:00",
+          "energy_kwh": 1.7442
+        },
+        {
+          "interval_start": "2010-04-25T00:00:00",
+          "interval_end": "2010-04-25T01:00:00",
+          "energy_kwh": 1.636633
+        },
+        {
+          "interval_start": "2010-04-25T01:00:00",
+          "interval_end": "2010-04-25T02:00:00",
+          "energy_kwh": 2.761133
+        },
+        {
+          "interval_start": "2010-04-25T02:00:00",
+          "interval_end": "2010-04-25T03:00:00",
+          "energy_kwh": 1.933533
+        },
+        {
+          "interval_start": "2010-04-25T03:00:00",
+          "interval_end": "2010-04-25T04:00:00",
+          "energy_kwh": 1.650733
+        },
+        {
+          "interval_start": "2010-04-25T04:00:00",
+          "interval_end": "2010-04-25T05:00:00",
+          "energy_kwh": 1.866
+        }
+      ]
+    }
+  }
+]

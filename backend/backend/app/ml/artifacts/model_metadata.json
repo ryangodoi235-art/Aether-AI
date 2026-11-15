@@ -1,0 +1,23 @@
+{
+  "model_version": "aether-energy-forecast-0.1.0",
+  "recommended_demo_model": "hist_gradient_boosting",
+  "feature_order": [
+    "energy_kwh_t",
+    "energy_kwh_t_minus_1",
+    "energy_kwh_t_minus_24",
+    "mean_kwh_last_24h",
+    "hour_of_day",
+    "day_of_week"
+  ],
+  "target": "target_kwh_next_hour",
+  "target_units": "kWh",
+  "hist_gradient_boosting_config": {
+    "max_iter": 150,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0
+  },
+  "deep_learning_architecture": "MLP(6,64,32,1), ReLU, dropout 0.1",
+  "scaler": "StandardScaler fit on train only; stored as scaler_mlp.joblib",
+  "seed": 42
+}

@@ -1,0 +1,85 @@
+
+# Ambientes e dependências
+.venv*/
+venv/
+env/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Credenciais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+
+# Dados pessoais e arquivos de execução
+data/
+*.sqlite*
+*.db
+*.log
+backups/
+*.bak
+*.before-edit
+
+# Modelos baixados e ferramentas externas
+models/
+local-tools/
+*.onnx
+*.gguf
+*.pt
+*.pth
+*.bin
+
+# Pacotes, gravações e resultados locais
+*.zip
+*.7z
+*.wav
+*.mp3
+*.webm
+
+# Credenciais e dados locais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+data/
+*.sqlite*
+*.db
+*.log
+
+# Ambientes, dependências e ferramentas externas
+.venv*/
+venv/
+env/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+local-tools/
+
+# Pesos baixados, backups e gravações
+models/
+*.onnx
+*.gguf
+*.pt
+*.pth
+*.bin
+backups/
+*.bak
+*.before-edit
+*.zip
+*.7z
+*.wav
+*.mp3
+*.webm
+
+# Backups e diagnósticos locais
+backup_vozes_*/
+backup_*/
+diagnostico_aether.json

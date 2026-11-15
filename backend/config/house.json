@@ -1,0 +1,106 @@
+{
+  "id": "casa-demo",
+  "name": "Casa fictícia Aether",
+  "rooms": [
+    {
+      "id": "sala",
+      "name": "Sala"
+    },
+    {
+      "id": "quarto",
+      "name": "Quarto"
+    },
+    {
+      "id": "03",
+      "name": "Cozinha"
+    },
+    {
+      "id": "04",
+      "name": "Banheiro"
+    }
+  ],
+  "devices": [
+    {
+      "id": "luz-sala",
+      "room_id": "sala",
+      "name": "Luz da sala",
+      "available": true,
+      "capabilities": [
+        "turn_on",
+        "turn_off"
+      ],
+      "initial_state": "off"
+    },
+    {
+      "id": "luz-quarto",
+      "room_id": "quarto",
+      "name": "Luz do quarto",
+      "available": true,
+      "capabilities": [
+        "turn_on",
+        "turn_off",
+        "set_brightness",
+        "set_color"
+      ],
+      "initial_state": "off"
+    },
+    {
+      "id": "tomada-sala",
+      "room_id": "sala",
+      "name": "Tomada da sala",
+      "available": true,
+      "capabilities": [
+        "turn_on",
+        "turn_off"
+      ],
+      "initial_state": "off"
+    },
+    {
+      "id": "sensor-temperatura-sala",
+      "room_id": "sala",
+      "name": "Temperatura da sala",
+      "kind": "temperature_sensor",
+      "available": true,
+      "capabilities": [
+        "read_temperature"
+      ]
+    },
+    {
+      "id": "123",
+      "name": "Geladeira",
+      "room_id": "03",
+      "available": true,
+      "capabilities": [
+        "turn_on",
+        "turn_off"
+      ],
+      "source": "simulation",
+      "kind": "light",
+      "initial_state": "off"
+    },
+    {
+      "id": "25",
+      "name": "Chuveiro",
+      "room_id": "04",
+      "available": true,
+      "capabilities": [
+        "read_energy"
+      ],
+      "source": "simulation",
+      "kind": "energy_sensor"
+    },
+    {
+      "id": "044",
+      "name": "Chuveiro_1",
+      "room_id": "04",
+      "available": true,
+      "capabilities": [
+        "turn_on",
+        "turn_off"
+      ],
+      "source": "simulation",
+      "kind": "switch",
+      "initial_state": "off"
+    }
+  ]
+}
