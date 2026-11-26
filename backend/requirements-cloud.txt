@@ -1,0 +1,8 @@
+-r requirements.txt
+-r requirements-features.txt
+# PDF preview/export; optional historical scikit-learn and voice engines stay separate.
+PyMuPDF>=1.26,<2
+numpy>=2.3,<3
+scipy>=1.16,<2
+reportlab>=4,<5
+ezdxf>=1.4,<2

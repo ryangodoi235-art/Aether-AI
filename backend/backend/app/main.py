@@ -1,5 +1,6 @@
 """API local: simulador, conversa, rotinas e ponte física configurável."""
 import json
+import os
 import re
 import unicodedata
 import sqlite3
@@ -54,7 +55,7 @@ def normalize_text(value):
 
 
 def create_app(config_path=None, db_path=None):
-    config_file = Path(config_path or ROOT / "config/house.json")
+    config_file = Path(config_path or os.environ.get('AETHER_CONFIG_PATH') or ROOT / "config/house.json")
     config = json.loads(config_file.read_text(encoding="utf-8-sig"))
     rooms = {r["id"] for r in config["rooms"]}
     devices = {d["id"]: d for d in config["devices"]}
@@ -72,7 +73,8 @@ def create_app(config_path=None, db_path=None):
             raise ValueError("Cômodo ou estado inicial inválido")
         if not isinstance(d["available"], bool) or not set(d["capabilities"]) <= {"turn_on", "turn_off", "set_brightness", "set_color"}:
             raise ValueError("Disponibilidade ou capacidade inválida")
-    database = Path(db_path or ROOT / "data/aether.sqlite3")
+    data_root = Path(os.environ.get('AETHER_DATA_DIR') or ROOT / 'data')
+    database = Path(db_path or data_root / "aether.sqlite3")
     database.parent.mkdir(parents=True, exist_ok=True)
 
     def connect():

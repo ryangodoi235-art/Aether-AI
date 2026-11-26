@@ -77,6 +77,8 @@ A instalação de dependências e o download inicial de modelos podem precisar d
 
 ### Publicação opcional no Netlify com MongoDB
 
+O backend Python possui um [guia de execução e publicação](docs/BACKEND_PYTHON.md), inicializadores para Ubuntu, Docker com volume local e um Blueprint opcional de demonstração no Render. O Netlify continua responsável pela interface e pelo gateway; não executa o Ollama do seu notebook.
+
 O repositório inclui configuração de publicação da interface no Netlify e armazenamento de cópias JSON dos projetos no MongoDB. Consulte [o guia de configuração](docs/NETLIFY_MONGODB.md).
 
 Essa modalidade usa serviços na nuvem, exige um backend Python acessível por HTTPS e não substitui a instalação local. O MongoDB desta integração guarda cópias temporárias por sessão; a maquete do backend permanece compartilhada e o SQLite não foi migrado. As contas e credenciais da implantação precisam ser configuradas antes do uso online.

@@ -1,0 +1,18 @@
+# Optional hosted demonstration. No disk or paid services are provisioned.
+services:
+  - type: web
+    name: aether-api
+    runtime: docker
+    plan: free
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile.cloud
+    healthCheckPath: /healthz
+    envVars:
+      - key: AETHER_API_TOKEN
+        generateValue: true
+      - key: AETHER_LOCAL_NLU
+        value: "1"
+      - key: AETHER_GENERAL_LLM
+        value: "0"
+      - key: AETHER_DATA_DIR
+        value: /var/lib/aether

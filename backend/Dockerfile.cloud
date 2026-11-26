@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 \
+    AETHER_DATA_DIR=/var/lib/aether AETHER_LOCAL_NLU=1 AETHER_GENERAL_LLM=0
+WORKDIR /app
+COPY requirements.txt requirements-features.txt requirements-cloud.txt ./
+RUN pip install --no-cache-dir -r requirements-cloud.txt \
+    && useradd --create-home --uid 10001 aether \
+    && mkdir -p /var/lib/aether && chown aether:aether /var/lib/aether
+COPY backend ./backend
+COPY config ./config
+COPY frontend ./frontend
+COPY serve_cloud.py ./
+USER aether
+EXPOSE 8000
+CMD ["python", "serve_cloud.py"]
