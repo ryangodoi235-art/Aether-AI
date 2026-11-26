@@ -30,6 +30,11 @@
   to = "/plantas_local.html"
   status = 200
 
+[[redirects]]
+  from = "/economia"
+  to = "/energy_coach.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
