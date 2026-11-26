@@ -12,6 +12,7 @@ export async function database(){
     const db=client.db(name);
     await db.collection('demo_projects').createIndex({owner:1,createdAt:-1});
     await db.collection('demo_projects').createIndex({expiresAt:1},{expireAfterSeconds:0});
+    await db.collection('workspaces').createIndex({expiresAt:1},{expireAfterSeconds:0});
     return db;
    }catch(err){await client.close();throw err;}
   })().catch(err=>{pending=undefined;throw err;});

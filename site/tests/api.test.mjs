@@ -5,6 +5,7 @@ import {access,authenticated} from '../netlify/lib/access.mjs';
 const origin='https://aether.example';
 const req=(path='/api/v1/devices',options={})=>new Request(origin+path,options);
 test('session, CSRF, gateway and binary responses',async()=>{
+ process.env.AETHER_BACKEND_MODE='python';
  process.env.AETHER_TEST_PASSWORD='test-only-password';process.env.AETHER_SESSION_SECRET='s'.repeat(48);
  assert.equal((await handler(req())).status,401);
  const login=await access(req('/api/session',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:JSON.stringify({password:'test-only-password'})}));

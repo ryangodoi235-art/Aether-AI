@@ -1,4 +1,5 @@
 import {access,authenticated,configured,sameOrigin} from '../lib/access.mjs';
+import native from '../lib/native/router.mjs';
 import {projects} from '../lib/projects.mjs';
 // Same-origin gateway. Backend secret remains in the Netlify function environment.
 export const config = { path: '/api/*' };
@@ -13,6 +14,7 @@ export default async function handler(request) {
   if(incoming.pathname==='/api/v1/cloud/projects'||incoming.pathname.startsWith('/api/v1/cloud/projects/'))return projects(request);
   if (!incoming.pathname.startsWith('/api/v1/')) return error(404,'Rota não encontrada.');
   if (!['GET','POST','PUT','DELETE'].includes(request.method)) return error(405,'Método não permitido.');
+  if(process.env.AETHER_BACKEND_MODE!=='python')return native(request);
   const base = process.env.AETHER_API_URL;
   const token = process.env.AETHER_API_TOKEN;
   if (!base || !token) return error(503,'Backend não configurado. Defina AETHER_API_URL e AETHER_API_TOKEN no Netlify e publique novamente.');
