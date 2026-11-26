@@ -29,3 +29,4 @@ test('session, CSRF, gateway and binary responses',async()=>{
  globalThis.fetch=async()=>{throw Error('private');};const bad=await handler(authed());assert.equal(bad.status,502);assert.ok(!(await bad.text()).includes('private'));
  }finally{globalThis.fetch=original;}
 });
+

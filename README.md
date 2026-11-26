@@ -75,6 +75,14 @@ A instalação de dependências e o download inicial de modelos podem precisar d
 
 ## Executar no Ubuntu
 
+### Publicação opcional no Netlify com MongoDB
+
+O repositório inclui configuração de publicação da interface no Netlify e armazenamento de cópias JSON dos projetos no MongoDB. Consulte [o guia de configuração](docs/NETLIFY_MONGODB.md).
+
+Essa modalidade usa serviços na nuvem, exige um backend Python acessível por HTTPS e não substitui a instalação local. O MongoDB desta integração guarda cópias temporárias por sessão; a maquete do backend permanece compartilhada e o SQLite não foi migrado. As contas e credenciais da implantação precisam ser configuradas antes do uso online.
+
+### Instalação local
+
 É necessário ter Python com suporte a ambientes virtuais. O ambiente utilizado no desenvolvimento em Ubuntu usa Python 3.12.
 
 Na pasta em que deseja baixar o projeto:

@@ -1,0 +1,39 @@
+[build]
+  base = "site"
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/painel"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/maquete"
+  to = "/maquette.html"
+  status = 200
+
+[[redirects]]
+  from = "/neural"
+  to = "/neural_lab.html"
+  status = 200
+
+[[redirects]]
+  from = "/plantas-local"
+  to = "/plantas_local.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(self)"
+    Cache-Control = "no-cache"

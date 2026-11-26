@@ -83,3 +83,6 @@ backups/
 backup_vozes_*/
 backup_*/
 diagnostico_aether.json
+
+# Publicação gerada pelo Netlify
+site/dist/

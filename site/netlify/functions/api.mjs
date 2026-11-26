@@ -1,4 +1,5 @@
 import {access,authenticated,configured,sameOrigin} from '../lib/access.mjs';
+import {projects} from '../lib/projects.mjs';
 // Same-origin gateway. Backend secret remains in the Netlify function environment.
 export const config = { path: '/api/*' };
 const error = (status, detail) => Response.json({detail}, {status, headers:{'Cache-Control':'no-store'}});
@@ -9,6 +10,7 @@ export default async function handler(request) {
   if(!configured())return error(503,'Acesso de testes não configurado.');
   if(!authenticated(request))return error(401,'Entre para acessar a casa de testes.');
   if(request.method!=='GET'&&!sameOrigin(request))return error(403,'Origem não permitida.');
+  if(incoming.pathname==='/api/v1/cloud/projects'||incoming.pathname.startsWith('/api/v1/cloud/projects/'))return projects(request);
   if (!incoming.pathname.startsWith('/api/v1/')) return error(404,'Rota não encontrada.');
   if (!['GET','POST','PUT','DELETE'].includes(request.method)) return error(405,'Método não permitido.');
   const base = process.env.AETHER_API_URL;
@@ -40,3 +42,4 @@ export default async function handler(request) {
     return error(502,'Backend indisponível ou resposta acima de 50 segundos. Confira o serviço Python. Se era um comando, consulte o estado antes de repetir.');
   }
 }
+
