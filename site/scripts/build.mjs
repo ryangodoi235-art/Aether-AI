@@ -18,6 +18,7 @@ for(const [folder,file,dest] of [['maquette','app.js','maquette-assets/app.js'],
 // Online capability notice; local source files remain untouched.
 for(const page of ['index.html','maquette.html','energy_coach.html','plantas_local.html']){
  const file=path.join(output,page);let content=await readFile(file,'utf8');
+ content=content.replaceAll('Processamento local','Demonstração online').replaceAll('salvos no SQLite','salvos no MongoDB por sessão').replaceAll('Redes neurais locais','Redes neurais experimentais');
  content=content.replace(/<head([^>]*)>/i,'<head$1><script>window.AETHER_NETLIFY_NATIVE=true;</script>');
  content=content.replace(/<\/body>/i, '<div style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#181231;color:#fff;text-align:center;font:12px sans-serif;padding:6px">Demonstração online · sessão individual temporária · sensores fictícios · arquivos de planta em JSON</div></body>');
  if(!content.includes('sessão individual temporária'))content+='<div style="padding:12px;background:#181231;color:white">Demonstração online · sessão individual temporária · sensores fictícios · plantas em JSON</div>';
@@ -26,6 +27,10 @@ for(const page of ['index.html','maquette.html','energy_coach.html','plantas_loc
 let features=await readFile(path.join(source,'features.js'),'utf8');
 features=features.replace('[voiceUI,catalogUI,routinesUI,energyUI,hardwareUI]','[]');
 await writeFile(path.join(output,'features.js'),features);
+let sceneHTML=await readFile(path.join(output,'maquette.html'),'utf8');
+sceneHTML=sceneHTML.replace('</head>','<style>#export-pdf,#export-dxf,label:has(#import-dxf),details:has(#pdf-file){display:none!important}</style></head>');
+await writeFile(path.join(output,'maquette.html'),sceneHTML);
+
 // Cloud demo does not expose unported CAD/PDF conversion controls.
 await writeFile(path.join(output,'plantas_home.js'),'');
 await writeFile(path.join(output,'plantas-home.js'),'');
