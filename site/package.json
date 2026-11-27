@@ -9,10 +9,12 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "npm run build && npm test"
+    "check": "npm test",
+    "pretest": "npm run build"
   },
   "dependencies": {
-    "mongodb": "^6.18.0"
+    "mongodb": "^6.18.0",
+    "nodemailer": "^10.6.1"
   },
   "devDependencies": {
     "linkedom": "^0.18.15"

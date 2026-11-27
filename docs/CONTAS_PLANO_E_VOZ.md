@@ -4,7 +4,7 @@
 
 1. Abra `/conta.html` no site publicado. Escolha **Criar minha conta**.
 2. Escolha usuário e senha próprios. Não é necessário convite ou senha da equipe.
-3. Guarde o código de recuperação. Ele aparece uma vez e permite trocar a senha sem e-mail. A recuperação gera outro código e encerra as sessões anteriores.
+3. Guarde o código de recuperação. Ele aparece uma vez e permite trocar a senha sem e-mail. Opcionalmente, confirme seu endereço para receber códigos por e-mail; veja [configuração Gmail](GMAIL_E_RECUPERACAO.md). A recuperação gera outro código e encerra as sessões anteriores.
 4. Abra a Home. O plano, a maquete e o histórico pertencem à conta. Sair e entrar novamente recupera a mesma residência.
 5. Em **Conversar por voz**, escolha uma voz em português do aparelho. Clique **Falar mensagem**, revise a transcrição e pressione **Enviar**. Use **Ouvir resposta** ou habilite a leitura automática.
 
@@ -23,7 +23,7 @@ A demonstração temporária continua acessível em `/login.html`, com dados sep
 - Residências de contas em `workspaces` não recebem TTL. Residências temporárias expiram em 24 horas. Cópias de plantas em `demo_projects` continuam expirando em 24 horas, inclusive nas contas.
 - As credenciais MongoDB e o segredo de sessão continuam apenas no ambiente servidor do Netlify. A disponibilidade depende da configuração e das cotas do Atlas/Netlify.
 
-Esta implementação não inclui verificação de e-mail, MFA, console de administração ou auditoria profissional de segurança. Não troque a senha do usuário MongoDB com a senha dos visitantes.
+A verificação de e-mail e recuperação opcional pelo Gmail estão no módulo de e-mail. MFA, console de administração e auditoria profissional de segurança não estão incluídos. Não troque a senha do usuário MongoDB com a senha dos visitantes.
 
 ## Plano e maquete
 

@@ -7,7 +7,7 @@ await access(path.join(source,'index.html'));
 const output=path.join(site,'dist');
 await mkdir(output,{recursive:true});
 await cp(source,output,{recursive:true});
-for(const file of ['login.html','cloud-entry.js','projetos.html','experience.css','experience.js','voice-chat.js','conta.html','brand.js'])await cp(path.join(site,'public',file),path.join(output,file));
+for(const file of ['login.html','cloud-entry.js','projetos.html','experience.css','experience.js','voice-chat.js','conta.html','brand.js','mail-settings.js'])await cp(path.join(site,'public',file),path.join(output,file));
 await cp(path.join(site,'public/brand'),path.join(output,'brand'),{recursive:true});
 // The current backend interface is authoritative; the historical site copy is stale.
 let html=await readFile(path.join(source,'index.html'),'utf8');
@@ -57,6 +57,6 @@ for(const page of ['index.html','maquette.html','energy_coach.html','plantas_loc
  const file=path.join(output,page);let content=await readFile(file,'utf8');
  content=content.replace(/<head([^>]*)>/i,'<head$1>'+brandHead);
  if(!content.includes('href="/experience.css"'))content+='\n<link rel="stylesheet" href="/experience.css">';
- content+='\n<script src="/brand.js" defer></script>';
+ content+='\n<script src="/brand.js" defer></script><script src="/mail-settings.js" defer></script>';
  await writeFile(file,content);
 }

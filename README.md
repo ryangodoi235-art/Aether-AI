@@ -79,7 +79,7 @@ A instalação de dependências e o download inicial de modelos podem precisar d
 
 A versão online usa **Netlify Functions Node.js + MongoDB**, sem exigir servidor Python externo ou Render. Inclui maquete individual, sensores simulados, plano conectado aos aparelhos, contas permanentes e voz do navegador quando compatível.
 
-Acesse `/conta.html` para criar uma conta sem convite. Guarde o código de recuperação. A maquete e o histórico permanecem após novo login; a demonstração temporária continua separada em `/login.html`.
+Acesse `/conta.html` para criar uma conta sem convite. O envio opcional de códigos e planos por Gmail requer a [configuração do remetente](docs/GMAIL_E_RECUPERACAO.md). Guarde o código de recuperação. A maquete e o histórico permanecem após novo login; a demonstração temporária continua separada em `/login.html`.
 
 A voz prioriza recursos locais do aparelho; reconhecimento/vozes online exigem consentimento. Não se trata de hospedar Ollama ou Piper nas Functions. Consulte [contas, plano e pesquisa de voz](docs/CONTAS_PLANO_E_VOZ.md) e [configuração Netlify/MongoDB](docs/NETLIFY_MONGODB.md).
 

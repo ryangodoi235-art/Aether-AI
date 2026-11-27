@@ -1,4 +1,5 @@
 import {access,authenticated,configured,sameOrigin} from '../lib/access.mjs';
+import mail from '../lib/mail.mjs';
 import accounts,{validAccount} from '../lib/accounts.mjs';
 import native from '../lib/native/router.mjs';
 import {projects} from '../lib/projects.mjs';
@@ -8,6 +9,7 @@ const error = (status, detail) => Response.json({detail}, {status, headers:{'Cac
 
 export default async function handler(request) {
   const incoming = new URL(request.url);
+  if(incoming.pathname.startsWith('/api/mail/'))return mail(request);
   if(incoming.pathname.startsWith('/api/account/'))return accounts(request);
   if(incoming.pathname==='/api/session'){if(request.method==='GET'){try{if(!await validAccount(request))return error(401,'Sessão encerrada. Entre novamente.');}catch{return error(503,'Banco indisponível para verificar sua conta.');}}return access(request);}
   if(!configured())return error(503,'Acesso de testes não configurado.');
