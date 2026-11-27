@@ -27,7 +27,7 @@ Variáveis de servidor necessárias:
 
 - `MONGODB_URI`: URI do usuário de banco Atlas, com senha correta e caracteres especiais codificados na URI.
 - `MONGODB_DB`: `aether`.
-- `AETHER_TEST_PASSWORD`: senha de acesso da equipe, mínimo 12 caracteres.
+- `AETHER_TEST_PASSWORD`: opcional, apenas para a demonstração temporária; mínimo 12 caracteres quando definida.
 - `AETHER_SESSION_SECRET`: segredo aleatório de pelo menos 32 caracteres.
 
 Não coloque valores secretos no GitHub, HTML, prefixos públicos ou capturas de tela. As funções precisam alcançar o cluster: configure as regras de rede do Atlas conforme o ambiente. O usuário do banco precisa ler/escrever a base e criar índices. Após mudar variáveis, publique novamente.

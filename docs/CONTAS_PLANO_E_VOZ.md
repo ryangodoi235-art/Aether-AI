@@ -3,7 +3,7 @@
 ## Como usar
 
 1. Abra `/conta.html` no site publicado. Escolha **Criar minha conta**.
-2. Escolha usuário e senha próprios. O convite é a senha da equipe configurada em `AETHER_TEST_PASSWORD`; não é a senha do banco.
+2. Escolha usuário e senha próprios. Não é necessário convite ou senha da equipe.
 3. Guarde o código de recuperação. Ele aparece uma vez e permite trocar a senha sem e-mail. A recuperação gera outro código e encerra as sessões anteriores.
 4. Abra a Home. O plano, a maquete e o histórico pertencem à conta. Sair e entrar novamente recupera a mesma residência.
 5. Em **Conversar por voz**, escolha uma voz em português do aparelho. Clique **Falar mensagem**, revise a transcrição e pressione **Enviar**. Use **Ouvir resposta** ou habilite a leitura automática.
@@ -69,4 +69,4 @@ A Web Speech API não padroniza o gênero de uma voz. A lista mostra nomes reais
 
 Os testes usam MongoDB simulado e DOM simulado para verificar: conta persistente entre logins, isolamento, recuperação de código, invalidação de sessão antiga, confirmação do chat, sincronização de horas/aparelhos, consentimento remoto, transcrição sem envio e leitura integral das respostas.
 
-Esses testes não substituem escuta real em Android/iPhone ou validação do banco em produção. A criação da conta precisa de um convite válido. Use `cd site && npm ci && npm run check`.
+Esses testes não substituem escuta real em Android/iPhone ou validação do banco em produção. O cadastro é aberto, com limites de tentativas. Use `cd site && npm ci && npm run check`.

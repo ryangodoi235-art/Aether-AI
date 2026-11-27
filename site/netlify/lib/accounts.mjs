@@ -13,18 +13,17 @@ function name(value){if(typeof value!=='string'||!/^[a-z0-9][a-z0-9_-]{2,31}$/i.
 async function limited(db,key,max){const bucket=Math.floor(Date.now()/900000),_id=key+':'+bucket,c=db.collection('auth_limits');await c.updateOne({_id},{$inc:{count:1},$setOnInsert:{expiresAt:new Date((bucket+2)*900000)}},{upsert:true});const r=await c.findOne({_id});if(r.count>max)fail(429,'Muitas tentativas. Aguarde até 15 minutos.');}
 export async function validAccount(req,getDB=database){const p=accountPrincipal(req);if(!p)return true;const db=await getDB(),u=await db.collection('accounts').findOne({userId:p.userId,sessionVersion:p.version});return !!u;}
 export function accountHandler(getDB=database){return async req=>{try{
- if(!configured())fail(503,'Configure a senha de convite e o segredo de sessão no servidor.');
+ if(!configured())fail(503,'Configure o segredo de sessão no servidor.');
  const path=new URL(req.url).pathname;
  if(path==='/api/account/me'&&req.method==='GET'){const p=accountPrincipal(req);if(!authenticated(req))fail(401,'Entre para continuar.');if(!p)return reply({mode:'demo',persistent:false});const db=await getDB(),u=await db.collection('accounts').findOne({userId:p.userId,sessionVersion:p.version});if(!u)fail(401,'Sessão encerrada. Entre novamente.');return reply({mode:'account',persistent:true,username:u._id});}
  if(req.method!=='POST')fail(405,'Método não permitido.');if(!sameOrigin(req))fail(403,'Origem não permitida.');
  const chunks=[];let size=0;if(req.body)for await(const chunk of req.body){size+=chunk.byteLength;if(size>4096)fail(413,'Solicitação muito grande.');chunks.push(Buffer.from(chunk));}
  let b;try{b=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{fail(400,'JSON inválido.');}
  if(!['/api/account/register','/api/account/login','/api/account/recover'].includes(path))fail(404,'Rota inexistente.');
- fields(b,path.endsWith('/register')?['username','password','invite']:path.endsWith('/recover')?['username','password','recoveryCode']:['username','password']);
+ fields(b,path.endsWith('/recover')?['username','password','recoveryCode']:['username','password']);
  const username=name(b.username),db=await getDB(),users=db.collection('accounts');
  await limited(db,'global',200);await limited(db,'name:'+digest(username),10);
  if(path.endsWith('/register')){
-  if(typeof b.invite!=='string'||!eq(b.invite,process.env.AETHER_TEST_PASSWORD))fail(403,'Convite inválido. Use a senha de convite fornecida pela equipe.');
   const secret=await passwordHash(b.password),recoveryCode=randomBytes(24).toString('hex'),userId=randomBytes(16).toString('hex');
   try{await users.insertOne({_id:username,userId,secret,recoveryHash:digest(recoveryCode),sessionVersion:0,createdAt:new Date()});}catch(e){if(e.code===11000)fail(409,'Este nome de usuário já está em uso.');throw e;}
   return reply({username,recoveryCode,detail:'Conta criada. Guarde o código de recuperação; ele aparece uma única vez.'},201,accountCookie(userId,0));
