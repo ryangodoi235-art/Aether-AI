@@ -1,3 +1,4 @@
+import {renderMail} from './mail-template.mjs';
 import nodemailer from 'nodemailer';
 import {randomBytes,randomInt,createHmac,timingSafeEqual} from 'node:crypto';
 import {database} from './mongo.mjs';import {accountPrincipal,accountCookie,configured,sameOrigin} from './access.mjs';import {passwordHash} from './accounts.mjs';import {ApiError,fail,fields} from './native/domain.mjs';import {databaseError,repository} from './native/store.mjs';import {connectedPlan} from './native/energy.mjs';
@@ -6,11 +7,10 @@ const digest=s=>createHmac('sha256',process.env.AETHER_SESSION_SECRET).update(s)
 const mask=email=>email?email.slice(0,2)+'***@'+email.split('@')[1]:null;
 const json=(d,status=200,cookie)=>Response.json(d,{status,headers:{'Cache-Control':'no-store',...(cookie?{'Set-Cookie':cookie}:{})}});
 export function mailConfigured(){return !!process.env.GMAIL_USER&&(!!process.env.GMAIL_APP_PASSWORD||['GOOGLE_CLIENT_ID','GOOGLE_CLIENT_SECRET','GOOGLE_REFRESH_TOKEN'].every(k=>!!process.env[k]));}
-const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let transport;
 export async function deliverMail({to,subject,text}){if(!mailConfigured())fail(503,'E-mail ainda não ativado pela equipe. Use o código de recuperação salvo.');const user=address(process.env.GMAIL_USER);
  if(!transport){const oauth=['GOOGLE_CLIENT_ID','GOOGLE_CLIENT_SECRET','GOOGLE_REFRESH_TOKEN'].every(k=>!!process.env[k]);transport=nodemailer.createTransport({service:'gmail',auth:oauth?{type:'OAuth2',user,clientId:process.env.GOOGLE_CLIENT_ID,clientSecret:process.env.GOOGLE_CLIENT_SECRET,refreshToken:process.env.GOOGLE_REFRESH_TOKEN}:{user,pass:process.env.GMAIL_APP_PASSWORD.replace(/\s/g,'')},connectionTimeout:10000,greetingTimeout:10000,socketTimeout:20000,disableFileAccess:true,disableUrlAccess:true});}
- const html='<div style="font:16px Arial,sans-serif;background:#080e1c;color:#edf4ff;padding:32px;max-width:620px"><h1 style="color:#71e4d5">Aether AI</h1><p style="white-space:pre-line;line-height:1.7">'+escape(text)+'</p><hr><small>Residência e sensores simulados. Nunca compartilhe senhas ou códigos de recuperação.</small></div>';
+ const html=renderMail({subject,text});
  try{const result=await transport.sendMail({from:{name:'Aether AI',address:user},to:address(to),subject,text,html});if(!result.accepted?.length)fail(503,'O Gmail não aceitou a mensagem. Tente novamente mais tarde.');}catch(e){if(e instanceof ApiError)throw e;fail(503,'O envio não foi aceito pelo Gmail. Confira a configuração do remetente ou tente mais tarde.');}
 }
 async function quota(db,key,max,window=900000){const b=Math.floor(Date.now()/window),_id='mail:'+digest(key)+':'+b,c=db.collection('auth_limits');await c.updateOne({_id},{$inc:{count:1},$setOnInsert:{expiresAt:new Date((b+2)*window)}},{upsert:true});const row=await c.findOne({_id});if(row.count>max)fail(429,'Limite de e-mails ou tentativas atingido. Aguarde antes de tentar novamente.');}
