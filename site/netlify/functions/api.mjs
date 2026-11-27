@@ -1,4 +1,5 @@
 import {access,authenticated,configured,sameOrigin} from '../lib/access.mjs';
+import accounts,{validAccount} from '../lib/accounts.mjs';
 import native from '../lib/native/router.mjs';
 import {projects} from '../lib/projects.mjs';
 // Same-origin gateway. Backend secret remains in the Netlify function environment.
@@ -7,9 +8,11 @@ const error = (status, detail) => Response.json({detail}, {status, headers:{'Cac
 
 export default async function handler(request) {
   const incoming = new URL(request.url);
-  if(incoming.pathname==='/api/session')return access(request);
+  if(incoming.pathname.startsWith('/api/account/'))return accounts(request);
+  if(incoming.pathname==='/api/session'){if(request.method==='GET'){try{if(!await validAccount(request))return error(401,'Sessão encerrada. Entre novamente.');}catch{return error(503,'Banco indisponível para verificar sua conta.');}}return access(request);}
   if(!configured())return error(503,'Acesso de testes não configurado.');
   if(!authenticated(request))return error(401,'Entre para acessar a casa de testes.');
+  try{if(!await validAccount(request))return error(401,'Sessão encerrada. Entre novamente.');}catch{return error(503,'Não foi possível verificar sua conta no banco.');}
   if(request.method!=='GET'&&!sameOrigin(request))return error(403,'Origem não permitida.');
   if(incoming.pathname==='/api/v1/cloud/projects'||incoming.pathname.startsWith('/api/v1/cloud/projects/'))return projects(request);
   if (!incoming.pathname.startsWith('/api/v1/')) return error(404,'Rota não encontrada.');

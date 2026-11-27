@@ -2,14 +2,14 @@ import {randomUUID} from 'node:crypto';
 import {database} from '../mongo.mjs';
 import {initialState,fail,hash} from './domain.mjs';
 export function repository(getDatabase=database){return async function transact(owner,operation){
- const db=await getDatabase(),c=db.collection('workspaces');
+ const db=await getDatabase(),c=db.collection('workspaces'),persistent=owner?.startsWith('account:');
  for(let attempt=0;attempt<6;attempt++){
-  const now=new Date();let row=await c.findOne({_id:owner,expiresAt:{$gt:now}});
-  if(!row){try{await c.updateOne({_id:owner,expiresAt:{$lte:now}},{$set:{payloadJson:JSON.stringify(initialState()),version:0,generation:randomUUID(),expiresAt:new Date(Date.now()+86400000)}});await c.insertOne({_id:owner,generation:randomUUID(),version:0,payloadJson:JSON.stringify(initialState()),expiresAt:new Date(Date.now()+86400000)});}catch(e){if(e.code!==11000)throw e;}row=await c.findOne({_id:owner,expiresAt:{$gt:now}});if(!row)continue;}
+  const now=new Date(),scope={_id:owner,...(persistent?{}:{expiresAt:{$gt:now}})};let row=await c.findOne(scope);
+  if(!row){try{await c.updateOne({_id:owner,expiresAt:{$lte:now}},{$set:{payloadJson:JSON.stringify(initialState()),version:0,generation:randomUUID(),expiresAt:new Date(Date.now()+86400000)}});await c.insertOne({_id:owner,generation:randomUUID(),version:0,payloadJson:JSON.stringify(initialState()),...(persistent?{}:{expiresAt:new Date(Date.now()+86400000)})});}catch(e){if(e.code!==11000)throw e;}row=await c.findOne(scope);if(!row)continue;}
   const state=JSON.parse(row.payloadJson);const result=await operation(state);
   const payloadJson=JSON.stringify(state);if(payloadJson===row.payloadJson)return result;
   if(Buffer.byteLength(payloadJson)>4000000)fail(413,'A sessão atingiu o limite. Exporte a planta e inicie outra sessão.');
-  const saved=await c.updateOne({_id:owner,generation:row.generation,version:row.version,expiresAt:{$gt:now}},{$set:{payloadJson},$inc:{version:1}});
+  const saved=await c.updateOne({...scope,generation:row.generation,version:row.version},{$set:{payloadJson},$inc:{version:1}});
   if(saved.modifiedCount===1)return result;
  }fail(409,'Há alterações simultâneas. Atualize e tente novamente.');
 };}

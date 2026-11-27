@@ -6,7 +6,7 @@ A demonstração online usa Functions Node.js e MongoDB diretamente. **Não prec
 
 | Recurso | Demonstração online |
 |---|---|
-| Casa/apartamento, cômodos e aparelhos | Maquete persistida por sessão; inclusão, remoção e edição pelos controles |
+| Casa/apartamento, cômodos e aparelhos | Maquete persistida por conta ou sessão temporária; inclusão, remoção e edição pelos controles |
 | Luz RGB e brilho | Apenas luzes compatíveis; estado persistido |
 | Sensores | Temperatura, umidade, presença, potência e energia fictícias; cálculo sob demanda |
 | Plano de economia | Conta relatada, moradores, meta, dicas para todos os aparelhos selecionados; sem garantia de economia |
@@ -14,10 +14,10 @@ A demonstração online usa Functions Node.js e MongoDB diretamente. **Não prec
 | Redes neurais | Mesmos pesos do Python, inferência JavaScript de intenções e previsão sintética; testes de equivalência |
 | Plantas | Importação/exportação JSON; PDF/DXF/OpenPlan continuam na versão local |
 | Dispositivos antigos | Consulta e controles básicos de ligar/desligar/RGB/brilho |
-| Voz, Whisper, Ollama, Home Assistant | Versão local; não executados nas Functions |
+| Voz, Whisper, Ollama, Home Assistant | Whisper/Ollama/Piper/Home Assistant na versão local; voz do navegador disponível no painel de voz |
 | Cadastros legados, rotinas, automações contínuas | Não migrados; seções extras omitidas da publicação online |
 
-O plano do usuário e o cenário de energia são armazenados, mas não alteram automaticamente os aparelhos da maquete. Configure-os na maquete para comparar os cenários.
+O perfil conecta os aparelhos selecionados e a meta à maquete. A referência de consumo usa as horas da maquete; a meta financeira da conta relatada continua separada. Veja [contas, plano e voz](CONTAS_PLANO_E_VOZ.md).
 
 ## Configuração no Netlify
 
@@ -36,9 +36,9 @@ O modo antigo de proxy Python é opcional: somente `AETHER_BACKEND_MODE=python` 
 
 ## Privacidade, duração e concorrência
 
-O cookie de sessão é assinado, HttpOnly, Secure, SameSite=Strict e dura 12 horas. O proprietário é derivado no servidor; não é um campo aceito do navegador. Cada login cria uma maquete, plano e histórico independentes. **Isso não é um cadastro de contas permanentes.** Novo login, expiração ou troca de navegador não recupera a sessão anterior: exporte a planta antes de sair.
+O cookie assinado dura 12 horas e usa HttpOnly, Secure e SameSite Strict. Em `/conta.html`, usuário e senha dão acesso à mesma residência após novo login. A senha usa scrypt e a recuperação usa um código aleatório de uso único. O proprietário é verificado pelo servidor. Consulte o guia de contas para os limites de tentativas e cuidados com o código de recuperação.
 
-Os documentos `workspaces` e `demo_projects` têm expiração de 24 horas. A API rejeita registros expirados imediatamente, mesmo antes da limpeza TTL. O estado é salvo como JSON para não transformar nomes do usuário em operadores MongoDB. Nenhum fallback em memória substitui o banco em caso de falha.
+Residências de contas permanentes não recebem expiração TTL. A demonstração temporária em `/login.html` mantém expiração de 24 horas, e suas sessões são independentes. As cópias JSON em `demo_projects` expiram em 24 horas em ambos os modos. O estado é armazenado como JSON; nomes dos usuários não viram operadores MongoDB. Não há fallback de dados em memória quando o banco falha.
 
 A gravação usa versão e comparação atômica (CAS), com nova tentativa em conflitos. Revisões da maquete impedem aplicar um comando sobre uma planta alterada. Os últimos 32 identificadores de solicitação guardam o resultado para evitar repetição; o chat confirma somente propostas ainda atuais e dentro de cinco minutos. Histórico limitado às últimas 60 mensagens. Limite de 1 MB por entrada JSON e 4 MB de estado por sessão.
 

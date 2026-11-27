@@ -3,8 +3,8 @@
 <style>body{font:16px system-ui;background:#080c20;color:#edf2ff;max-width:850px;margin:40px auto;padding:20px}a{color:#79dcff}button,input{font:inherit;border-radius:8px;padding:10px;margin:5px 0}button{cursor:pointer;background:#572bc6;color:white;border:0}label{display:block;margin-top:15px}li{padding:12px;border-bottom:1px solid #333}li button{margin-left:12px}#status{white-space:pre-wrap}small{color:#bac9e3}</style></head>
 <body><a href="/painel">← Voltar à Home</a><h1>Cópias dos projetos</h1>
 <p>Guarde um arquivo JSON da sua planta no MongoDB e baixe uma cópia quando precisar.</p>
-<p><strong>Demonstração por sessão:</strong> os arquivos ficam acessíveis somente nesta sessão de navegador. Baixe antes de sair. As cópias expiram em 24 horas; isto não é uma conta de usuário.</p>
-<p>Nesta demonstração, a maquete e o histórico são separados por sessão e salvos no MongoDB. Um novo login cria outra sessão.</p>
+<p><strong>Demonstração por sessão:</strong> as cópias expiram em 24 horas. Na demonstração temporária, baixe antes de sair. Com conta permanente, as cópias permanecem acessíveis após novo login até essa expiração.</p>
+<p>Nesta demonstração, a maquete e o histórico são separados por sessão e salvos no MongoDB. Um login temporário cria outra sessão; a conta permanente recupera sua residência.</p>
 <form id="save"><label>Título <input name="title" maxlength="100" required></label><label>Arquivo JSON exportado do Aether <input name="file" type="file" accept=".json,application/json" required></label><button>Salvar cópia</button></form>
 <p>Para restaurar, baixe o JSON e utilize a importação de planta do Aether. Nenhuma cópia é aplicada automaticamente à maquete.</p>
 <p id="status" role="status" aria-live="polite"></p><button id="refresh">Atualizar lista</button><ul id="list"></ul>

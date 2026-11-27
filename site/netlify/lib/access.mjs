@@ -10,11 +10,22 @@ export function authenticated(req){
  const [expires,nonce,sig,...extra]=value.split('.');
  return !extra.length&&/^\d+$/.test(expires)&&Number(expires)>Date.now()&&Number(expires)<=Date.now()+43201000&&!!nonce&&!!sig&&equal(sig,signature(expires+'.'+nonce));
 }
+export function accountPrincipal(req){
+ if(!authenticated(req))return null;
+ const value=(req.headers.get('cookie')||'').split(';').map(x=>x.trim()).find(x=>x.startsWith(cookieName+'='))?.slice(cookieName.length+1);
+ const nonce=value.split('.')[1],m=/^u~([a-f0-9]{32})~(\d+)~[a-f0-9]{32}$/.exec(nonce);
+ return m?{userId:m[1],version:Number(m[2])}:null;
+}
+export function accountCookie(userId,version){
+ const value=String(Date.now()+43200000)+'.u~'+userId+'~'+version+'~'+randomBytes(16).toString('hex');
+ return cookieName+'='+value+'.'+signature(value)+'; Path=/; Max-Age=43200; HttpOnly; Secure; SameSite=Strict';
+}
 export function sameOrigin(req){return req.headers.get('origin')===new URL(req.url).origin;}
 // A session-scoped pseudonymous owner; never trust a client-supplied owner ID.
 export function sessionOwner(req){
  if(!authenticated(req))return null;
  const value=(req.headers.get('cookie')||'').split(';').map(x=>x.trim()).find(x=>x.startsWith(cookieName+'='))?.slice(cookieName.length+1);
+ const principal=accountPrincipal(req);if(principal)return 'account:'+principal.userId;
  return createHmac('sha256',process.env.AETHER_SESSION_SECRET).update('mongo-owner:'+value).digest('hex');
 }
 export async function access(req){

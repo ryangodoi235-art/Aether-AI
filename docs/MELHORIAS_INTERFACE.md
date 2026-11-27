@@ -25,7 +25,9 @@ O manual oficial do Three.js explica o custo adicional de renderizar todos os pi
 
 Fonte: https://threejs.org/manual/pages/responsive.html
 
-## Melhorias recomendadas, ainda não implementadas
+## Melhorias recomendadas e andamento
+
+Contas permanentes, conexão entre plano/aparelhos e voz do navegador foram implementadas na atualização seguinte. Veja [o guia de contas, plano e voz](CONTAS_PLANO_E_VOZ.md). Os testes em dispositivos reais continuam pendentes.
 
 | Prioridade | Melhoria | Critério de conclusão |
 |---|---|---|
