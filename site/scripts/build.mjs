@@ -7,9 +7,11 @@ await access(path.join(source,'index.html'));
 const output=path.join(site,'dist');
 await mkdir(output,{recursive:true});
 await cp(source,output,{recursive:true});
-for(const file of ['login.html','cloud-entry.js','projetos.html','experience.css','experience.js','voice-chat.js','conta.html'])await cp(path.join(site,'public',file),path.join(output,file));
+for(const file of ['login.html','cloud-entry.js','projetos.html','experience.css','experience.js','voice-chat.js','conta.html','brand.js'])await cp(path.join(site,'public',file),path.join(output,file));
+await cp(path.join(site,'public/brand'),path.join(output,'brand'),{recursive:true});
 // The current backend interface is authoritative; the historical site copy is stale.
 let html=await readFile(path.join(source,'index.html'),'utf8');
+html=html.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g,'/brand/aether-symbol.png');
 html+='\n<script src="/cloud-entry.js" defer></script>\n';
 await writeFile(path.join(output,'index.html'),html);
 for(const [folder,file,dest] of [['maquette','app.js','maquette-assets/app.js'],['maquette','style.css','maquette-assets/style.css'],['','neural_home.js','neural-assets/home.js'],['','plantas_local.js','plantas-local.js'],['','plantas_home.js','plantas-home.js'],['','energy_home.js','energy-home.js']]){
@@ -48,3 +50,13 @@ await writeFile(sceneJS,sceneCode);
 await writeFile(path.join(output,'plantas_home.js'),'');
 await writeFile(path.join(output,'plantas-home.js'),'');
 console.log('Interface atual e páginas de cópias preparadas em site/dist.');
+
+// Apply the identity to entry screens too, without changing form IDs or API contracts.
+const brandHead='<link rel="icon" type="image/png" href="/brand/aether-symbol.png"><meta name="theme-color" content="#080e1c">';
+for(const page of ['index.html','maquette.html','energy_coach.html','plantas_local.html','neural_lab.html','login.html','conta.html','projetos.html']){
+ const file=path.join(output,page);let content=await readFile(file,'utf8');
+ content=content.replace(/<head([^>]*)>/i,'<head$1>'+brandHead);
+ if(!content.includes('href="/experience.css"'))content+='\n<link rel="stylesheet" href="/experience.css">';
+ content+='\n<script src="/brand.js" defer></script>';
+ await writeFile(file,content);
+}
