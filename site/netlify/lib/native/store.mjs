@@ -7,7 +7,8 @@ export function repository(getDatabase=database){return async function transact(
   const now=new Date();let row=await c.findOne({_id:owner,expiresAt:{$gt:now}});
   if(!row){try{await c.updateOne({_id:owner,expiresAt:{$lte:now}},{$set:{payloadJson:JSON.stringify(initialState()),version:0,generation:randomUUID(),expiresAt:new Date(Date.now()+86400000)}});await c.insertOne({_id:owner,generation:randomUUID(),version:0,payloadJson:JSON.stringify(initialState()),expiresAt:new Date(Date.now()+86400000)});}catch(e){if(e.code!==11000)throw e;}row=await c.findOne({_id:owner,expiresAt:{$gt:now}});if(!row)continue;}
   const state=JSON.parse(row.payloadJson);const result=await operation(state);
-  const payloadJson=JSON.stringify(state);if(Buffer.byteLength(payloadJson)>4000000)fail(413,'A sessão atingiu o limite. Exporte a planta e inicie outra sessão.');
+  const payloadJson=JSON.stringify(state);if(payloadJson===row.payloadJson)return result;
+  if(Buffer.byteLength(payloadJson)>4000000)fail(413,'A sessão atingiu o limite. Exporte a planta e inicie outra sessão.');
   const saved=await c.updateOne({_id:owner,generation:row.generation,version:row.version,expiresAt:{$gt:now}},{$set:{payloadJson},$inc:{version:1}});
   if(saved.modifiedCount===1)return result;
  }fail(409,'Há alterações simultâneas. Atualize e tente novamente.');
